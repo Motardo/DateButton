@@ -1,7 +1,6 @@
 DateButton
 ==========
 
-<<<<<<< HEAD
 A date picker button widget for Android. <br />
 A DateButton is a Button that displays a date. When the user clicks the button, 
 a DatePickerDialog is started allowing the user to select a new date. The project consists
@@ -33,6 +32,4 @@ DatePickedCallback myCallback = new DatePickedCallback() {
 
 ((DateButton) findViewById(R.id.myDateButton)).setDatePickedCallback(myCallback);
 ```
-=======
-A date picker button widget for Android
->>>>>>> refs/remotes/upstream/master
+
