@@ -5,11 +5,11 @@ package edu.wilson.datebutton;
  * @author Nathan
  *
  */
-public interface DateButtonClickHandler {
+public interface DatePickedCallback {
 	/**
 	 * the activity can provide a definition for this callback
 	 * 
 	 * @param milliseconds the date that the user picked in milliseconds since 1/1/1970
 	 */
-	public void onDateButtonClicked(long milliseconds); // implement this method
+	public void onDatePicked(long milliseconds); // implement this method
 }

@@ -30,19 +30,19 @@ import android.widget.DatePicker;
  * The activity can be notified whenever the user sets the date by defining a callback 
  * function and setting it to the DateButton like this: <br>
  * <pre>
-DateButtonClickHandler myCallback = new DateButtonClickHandler() {
-	public void onDateButtonClicked(Calendar calendar) {
+DatePickedCallback myCallback = new DatePickedCallback() {
+	public void onDatePicked(long milliseconds) {
 		// do something here
 	}
 };
 	
-((DateButton) findViewById(R.id.myDateButton)).setDateButtonClickCallback(myCallback);
+((DateButton) findViewById(R.id.myDateButton)).setDatePickedCallback(myCallback);
 
  * @author Nathan
  *
  */
 public class DateButton extends Button {
-	private DateButtonClickHandler callback = null;
+	private DatePickedCallback callback = null;
 	private Calendar calendar = Calendar.getInstance();
 	private SimpleDateFormat sdf = new SimpleDateFormat("E, dd-MMM", Locale.US);
 	private final DatePickerDialog.OnDateSetListener dateSetListener =
@@ -52,7 +52,7 @@ public class DateButton extends Button {
 			calendar.set(year, monthOfYear, dayOfMonth, 0, 0, 0);
 			updateButtonText();
 			if (callback != null) {
-				callback.onDateButtonClicked(calendar.getTimeInMillis());
+				callback.onDatePicked(calendar.getTimeInMillis());
 			}
 		}
 	};
@@ -74,11 +74,11 @@ public class DateButton extends Button {
 	
 	/**
 	 * use this method to bind a callback method in the activity that will run
-	 * when the date is changed
+	 * when the date is set in the {@link DatePickerDialog}
 	 * 
 	 * @param callback a method defined in your activity to be called when the user sets the date
 	 */
-	public void setDateButtonClickedCallback(DateButtonClickHandler callback) {
+	public void setDatePickedCallback(DatePickedCallback callback) {
 		this.callback = callback;
 	}
 
@@ -99,6 +99,7 @@ public class DateButton extends Button {
 	 */
 	public void setDateFormat(SimpleDateFormat sdf) {
 		this.sdf = (SimpleDateFormat) sdf.clone();
+		updateButtonText();
 	}
 	
 	private final void initialize() {
